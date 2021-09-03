@@ -1,39 +1,33 @@
 fun main() {
     println("Masukan Nama anda untuk dipecah namanya: ")
-    val Nama = readLine().toString()
-    val NamaHabisDipecah = arrayListOf<String>()
-    var temp : String? = null
-    for(i in 0..Nama.length-1){
-        if(Nama[i] == ' '){
-            if (temp != null) {
-                NamaHabisDipecah.add(temp)
-            }
+    val nama = readLine().toString()
+    val namaHabisDipecah = arrayListOf<String>()
+    var temp = String()
+    for(i in nama.indices){
+        //logic untuk menampilkan nama sampai ke sebelum whitespace (spasi)
+        if(nama[i] == ' '){
+            namaHabisDipecah.add(temp)
+            temp = ""
             println()
             continue
         }
-        else if(i == Nama.length){
+        /*
+        dikarenakan ketika i sudah mencapai limit, dan terjadi error karena masih melakukan pengecekan
+        maka saya tambahkan pengecekan apakah sudah mencapai limit, jika sudah maka perulangan berhenti
+         */
+        else if(i == nama.length){
             break
         }
+        //Jika belum sampai whitespace, maka akan menampilkan perhuruf
         else{
-            temp = Nama[i].toString()
-            print(Nama[i])
+            temp += nama[i].toString()
+            print(nama[i])
         }
     }
-//    println("Udah kami pecah jadi perhuruf tuh....\nMasih mau di-eja?")
-//    println("1. Ya\n2. Ngga ah males")
-//    val pilihan = readLine()?.toInt()
-//    when(pilihan){
-//        1 -> ejaNamaPerkata(NamaHabisDipecah)
-//    }
+    print("\nTampilkan:\n1. Nama Depan\n2. Nama Belakang\nTuliskan Pilihanmu: ")
+    val pilihan = readLine()
+    when(pilihan?.toInt()){
+        1 -> println(namaHabisDipecah.first())
+        2 -> println(namaHabisDipecah.last())
+    }
 }
-
-//fun ejaNamaPerkata(Nama: ArrayList<String>) {
-//    for(i in 0..Nama.size){
-//        if(i % 2 == 0){
-//
-//        }
-//        else{
-//            print(Nama[i])
-//        }
-//    }
-//}
